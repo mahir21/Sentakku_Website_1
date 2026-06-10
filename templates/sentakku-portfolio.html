@@ -594,6 +594,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;width
           </div>
         </div>
         <button class="btn btn-book" onclick="submitConsult()">Book My Free Consultation</button>
+        <p id="formError" style="display:none;color:#ff6b6b;margin-top:12px;font-size:.9rem;"></p>
       </div>
 
       <div class="form-success" id="formSuccess">
@@ -712,14 +713,23 @@ function submitConsult(){
   data.append('phone', phone);
   data.append('message', `Grade: ${grade} | Interest: ${interest}`);
 
+  const errEl = document.getElementById('formError');
+  errEl.style.display = 'none';
+
   fetch('/submit', { method: 'POST', body: data })
-    .then(() => {
-      document.getElementById('formFields').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+    .then(res => res.json().then(json => ({ ok: res.ok, json })))
+    .then(({ ok, json }) => {
+      if (ok) {
+        document.getElementById('formFields').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        errEl.textContent = 'Submission failed: ' + (json.error || 'Unknown error');
+        errEl.style.display = 'block';
+      }
     })
-    .catch(() => {
-      document.getElementById('formFields').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+    .catch(err => {
+      errEl.textContent = 'Could not reach the server. Please try again.';
+      errEl.style.display = 'block';
     });
 }
 </script>
