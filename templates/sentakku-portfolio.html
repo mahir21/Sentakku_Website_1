@@ -712,7 +712,7 @@ function submitConsult(){
   data.append('phone', phone);
   data.append('message', `Grade: ${grade} | Interest: ${interest}`);
 
-  fetch('http://127.0.0.1:5000/submit', { method: 'POST', body: data })
+  fetch('/submit', { method: 'POST', body: data })
     .then(() => {
       document.getElementById('formFields').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
