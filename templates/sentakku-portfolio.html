@@ -232,10 +232,18 @@ nav{
 .consult-points{margin-top:26px;list-style:none}
 .consult-points li{padding:8px 0 8px 30px;position:relative;color:var(--muted);font-size:.95rem}
 .consult-points li::before{content:"✓";position:absolute;left:4px;color:var(--lime);font-weight:700}
-.instant{margin-top:30px}
-.instant p{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.instant{
+  margin-top:30px;
+  background:rgba(79,216,235,.08);
+  border:1.5px solid var(--cyan);
+  border-radius:var(--radius);
+  padding:18px 22px;
+}
+.instant p{font-size:1.1rem;color:var(--text);margin-bottom:10px;font-weight:600}
+.instant a{color:var(--cyan);text-decoration:none;font-weight:700}
+.instant a:hover{text-decoration:underline}
 .btn-instant{
-  background:transparent;color:var(--lime);border:1px solid var(--lime);
+  background:transparent;color:var(--lime);border:1px solid var(--lime);font-size:1rem;
 }
 .btn-instant:hover{background:rgba(200,247,81,.1);transform:translateY(-2px)}
 
@@ -553,9 +561,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;width
         <li>Get honest answers about schedule, pace, and outcomes</li>
       </ul>
       <div class="instant">
-        <p>Prefer to skip the form?</p>
+        <p>Contact Us at: <a href="mailto:contact@sentakku.com">contact@sentakku.com</a></p>
         <!-- EDIT: replace # with your Calendly / Google Calendar booking link -->
-        <a href="#" class="btn btn-instant">Schedule Instantly →</a>
+
       </div>
     </div>
 
